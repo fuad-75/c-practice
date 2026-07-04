@@ -18,7 +18,7 @@ int main(){
         int factr=factorial(r);
         int factnr=factorial(n-r);
         int result=factn/(factr*factnr);
-        printf("%d\t",result);
+        printf("%d ",result);
         
     }
     printf("\n");
