@@ -26,3 +26,4 @@ int main(){
         printf("\n");
     }
 }
+//If total line =n===  n==(n/2)+1;
