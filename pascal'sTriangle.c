@@ -1,34 +1,36 @@
 #include<stdio.h>
-int factorial(int f);
+int factorial(int m);
 int main(){
-    int t,N,n,r;
+    int n,r,nr;
     printf("Enter the order of pascal's triangle:");
-    scanf("%d",&t);
-    if(t==0){
-        printf("1");
-        return 0;
+    scanf("%d",&n);
+    int nsp=n;
+    for(int u=1;u<=n+1;u++){
+        printf(" ");
     }
-    if(t==1){
-        printf("1   1");
-        return 0;
+    printf("%d\n",1);
+    for(int i=1;i<=n;i++){
+        for(int k=1;k<=nsp;k++){
+            printf(" ");
+        }
+        for(int r=0;r<=n;r++){
+            
+    int nFact=factorial(i);
+    int rFact=factorial(r);
+    int nrFact=factorial(i-r);
+    int result=nFact/(rFact*nrFact);
+    if(result!=0)
+    printf("%d",result);
+    printf(" ");
+        }
+        printf("\n");
+        nsp--;
     }
-    for(int N=0;N<=t;N++){
-    for(r=0,n=N;r<=n;r++){
-        int factn=factorial(n);
-        int factr=factorial(r);
-        int factnr=factorial(n-r);
-        int result=factn/(factr*factnr);
-        printf("%d ",result);
-        
-    }
-    printf("\n");
-    }
-    return 0;
 }
-int factorial(int f){
+int factorial(int m){
     int sum=1;
-    for(int i=1;i<=f;i++){
-       sum=sum*i;
+    for( int i=1;i<=m;i++){
+        sum=sum*i;
     }
     return sum;
 }
