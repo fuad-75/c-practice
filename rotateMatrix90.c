@@ -1,82 +1,44 @@
-
-#include <stdio.h>
-
-int main()
-{
-    int old_row,old_col, n,m,sum=0,row,col,counter=0;
-    printf("Enter the number of rows:");
-    scanf("%d",&old_row);
-    printf("Enter the number of coloumns:");
-    scanf("%d",&old_col);
-    // int arr_a[2][2]={1,2,3,4};
-    // int arr_b[2][2]={1,2,3,4};
-    int arr[old_row][old_col];
-    
-    for(int i=0;i<old_row;i++){
-        for(int j=0;j<old_col;j++){
-            scanf("%d",&arr[i][j]);
-            
-        }
-        // printf("\n");
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+int main(){
+    int **m,**trans,row,col;
+    printf("Enter the order:");
+    scanf("%d %d",&row,&col);
+    m=(int**)malloc(row*sizeof(int*));
+    assert(m!=NULL);
+    for(int i=0;i<row;i++){
+        *(m+i)=(int*)malloc(col*sizeof(int));
+        assert(*(m+i)!=NULL);
     }
-    int new_row=old_col;
-    int new_col=old_row;
-    
-    
-    // int max=0;
-    int brr[new_row][new_col];
-    for(int i=0;i<old_row;i++){
-        
-        for(int j=0;j<old_col;j++){
-            
-                brr[i][j]=arr[j][i];
-                
-            
-            }
+    trans=(int**)malloc(col*sizeof(int*));
+    assert(trans!=NULL);
+    for(int i=0;i<col;i++){
+        *(trans+i)=(int*)malloc(row*sizeof(int));
+        assert(*(trans+i)!=NULL);
     }
-        // if(counter>max){
-        //     max=counter;
-        //     row=i;
-        // }
-            
-    
-    if(old_col%2!=0){
-        for(int i=0;i<=(old_col-1);i++){
-        for(int j=0;(j!=((old_col+1)/2)&& j<=(old_col));j++){
-            int temp=brr[i][old_col-1-j];
-            brr[i][old_col-1-j]=brr[i][j];
-            brr[i][j]=temp;
-            
-            
-            // brr[i][j]=brr[i][old_col-1-j];
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            scanf("%d",*(m+i)+j);
         }
     }
-    }
-    else{
-        for(int i=0;i<=(old_col-1);i++){
-        for(int j=0; j<(old_col)/2;j++){
-            int temp=brr[i][old_col-1-j];
-            brr[i][old_col-1-j]=brr[i][j];
-            brr[i][j]=temp;
-            
-            
-            // brr[i][j]=brr[i][old_col-1-j];
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            *(*(trans+j)+i)=*(*(m+i)+j);
         }
     }
+    for(int i=0;i<col;i++){
+        for(int j=0,k=row-1-j;j<k;j++,k--){
+            int temp=*(*(trans+i)+j);
+            *(*(trans+i)+j)=*(*(trans+i)+k);
+            *(*(trans+i)+k)=temp;
+        }
     }
-    printf("\n");
-    for(int i=0;i<new_row;i++){
-        for(int j=0;j<new_col;j++){
-            printf("%d ",brr[i][j]);
+    for(int i=0;i<col;i++){
+        for(int j=0;j<row;j++){
+            printf("%d ",*(*(trans+i)+j));
         }
         printf("\n");
     }
-
-    return 0;
+    
 }
-/*
-   1 0 0 0
-   0 1 0 0
-   0 0 1 0
-   0 0 0 1 
-   */
