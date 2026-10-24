@@ -1,14 +1,26 @@
 #include<stdio.h>
-void tower_hanoi(int n,char s,char h, char d);
+void hanoi(int n,char s,char h,char d);
+int count=0;
 int main(){
     int n;
-    printf("Enter the order of Tower of Hanoi:");
+    char s='A';
+    char h='B';
+    char d='C';
     scanf("%d",&n);
-    tower_hanoi(n,'A','B','C');
+    hanoi(n,s,h,d);
+    printf("Total %d steps.",count);
 }
-void tower_hanoi(int n,char s,char h, char d){
-    if(n==0) return;
-    tower_hanoi(n-1,s,d,h);
+void hanoi(int n,char s,char h,char d){
+    if(n==1){
     printf("%c->%c\n",s,d);
-    tower_hanoi(n-1,h,s,d);
+     count ++;
+    }
+    else{
+        hanoi(n-1,s,d,h);
+        printf("%c->%c\n",s,d);
+        count ++;
+        hanoi(n-1,h,s,d);
+        
+    }
+    
 }
